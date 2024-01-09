@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "498178451627",
+    "project_id": "thegame-56e75",
+    "storage_bucket": "thegame-56e75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498178451627:android:d100bc0f415a9a6d9c6fee",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.TheGame"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDazi26D5OMk0in8_H37I7B30NT46C-P1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
