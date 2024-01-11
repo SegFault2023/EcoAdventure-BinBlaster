@@ -17090,7 +17090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothing: 0.07
-  player: {fileID: 0}
+  player: {fileID: 1924404516}
   minPosition: {x: 1.2, y: -6.6}
   maxPosition: {x: 8.8, y: 17.2}
 --- !u!81 &1695748057
@@ -18020,6 +18020,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac1034e8f0bae450987b7ad61053d12c, type: 3}
+--- !u!4 &1924404516 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2536814337522340152, guid: ac1034e8f0bae450987b7ad61053d12c, type: 3}
+  m_PrefabInstance: {fileID: 1924404515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1925163534 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2631551758401229667, guid: 0fb2a9536e80e439a84091a23829f870, type: 3}
