@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class CameraController : MonoBehaviour
 {
     [Header("Following Object")]
     public Transform player;
-    [Header("Boundries")]
+    [Header("Boundaries")]
     public float boundX = 0.15f;
     public float boundY = 0.05f;
+
+    private Tilemap tilemap;
+    private BoundsInt bounds;
+
+    void Start()
+    {
+      
+    }
 
     // Update is called once per frame
     void LateUpdate()
@@ -19,7 +28,7 @@ public class CameraController : MonoBehaviour
 
         if (deltaX > boundX || deltaX < -boundX)
         {
-            if(transform.position.x < player.position.x)
+            if (transform.position.x < player.position.x)
             {
                 delta.x = deltaX - boundX;
             }
@@ -31,9 +40,9 @@ public class CameraController : MonoBehaviour
 
         float deltaY = player.position.y - transform.position.y;
 
-        if(deltaY > boundY || deltaY < -boundY)
+        if (deltaY > boundY || deltaY < -boundY)
         {
-            if(transform.position.y < player.position.y)
+            if (transform.position.y < player.position.y)
             {
                 delta.y = deltaY - boundY;
             }
@@ -43,8 +52,21 @@ public class CameraController : MonoBehaviour
             }
         }
 
+        // Add clamping based on Tilemap bounds
+        tilemap = FindObjectOfType<Tilemap>();
+        tilemap.CompressBounds();
 
+        bounds = tilemap.cellBounds;
 
-        transform.position += new Vector3(delta.x,delta.y,0);
+        Vector3 targetPosition = transform.position + delta;
+        print(" jjjjjjjjjjjjj" + (bounds.x + bounds.size.x)+" "+ bounds.x);
+        print("yyyyyyyyyyyyyyyyy " + (bounds.y + bounds.size.y) + " " + bounds.y);
+
+        targetPosition.x = Mathf.Clamp(targetPosition.x, bounds.x, bounds.x + bounds.size.x);
+        targetPosition.y = Mathf.Clamp(targetPosition.y, bounds.y, bounds.y + bounds.size.y);
+        print(" current x" + targetPosition.x);
+        print("current  y " + targetPosition.y);
+
+        transform.position = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
     }
 }

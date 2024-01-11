@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class SpawnTrash : MonoBehaviour
 {
@@ -71,6 +73,8 @@ public class SpawnTrash : MonoBehaviour
 
         Gizmos.DrawWireCube(new Vector3(rect.center.x, rect.center.y, 0.01f), new Vector3(rect.size.x, rect.size.y, 0.01f));
     }
+
+
 }
 
 

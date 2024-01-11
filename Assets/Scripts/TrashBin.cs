@@ -36,7 +36,7 @@ public class TrashBin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(can_get_trash && Input.GetKeyDown(KeyCode.C) && (numberOfTrashes < maxTrashLimit))
+        if(can_get_trash && Input.GetKeyDown(KeyCode.X) && (numberOfTrashes < maxTrashLimit))
         {
             int slotToBeRemoved = inventoryManager.getSelectedIndex();
             anim.SetBool("ButtonPressed", true);
