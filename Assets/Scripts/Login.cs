@@ -14,4 +14,9 @@ public class Login : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(3);
     }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadSceneAsync(5);
+    }
 }
