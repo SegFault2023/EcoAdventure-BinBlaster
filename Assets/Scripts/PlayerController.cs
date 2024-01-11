@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [RequireComponent(typeof(BoxCollider2D))]
 
 public class Player : MonoBehaviour
@@ -28,7 +27,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        
         ProccessInput();
+        
         Animate();
         if (input.x < 0 && !facingLeft || input.x > 0 && facingLeft)
         {
