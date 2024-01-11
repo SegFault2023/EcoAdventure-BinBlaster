@@ -13,16 +13,15 @@ public class SpawnTrash : MonoBehaviour
     public float boundY = 2.0f;
 
     public float objectCount = 5;
-    
+    public static float trashCount = 0;
 
-    void Start()
+    void Update()
     {
-        int count = 0;
 
         
    
 
-        while (count < objectCount)
+        while (trashCount < objectCount)
         {
             int trashChooser = Random.Range(0, trashArray.Length);
 
@@ -41,23 +40,24 @@ public class SpawnTrash : MonoBehaviour
 
             Collider2D Collision = Physics2D.OverlapArea(colliderPointA, colliderPointB, layerList);
 
-
+            Debug.Log(trashCount);
 
             if (Collision == false)
             {
 
                 Instantiate(trash, spawnPoint, Quaternion.identity);
-
-                count++;
+                Debug.Log("New Trash Spawned");
+                trashCount++;
             }
 
-            if(count == 100)
+            if(trashCount == 100)
             {
                 break;
             }
 
         }        
     }
+    
   
 
     void OnDrawGizmos()

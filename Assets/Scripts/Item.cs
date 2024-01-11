@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
-{
+{   
     [SerializeField]
     private string itemName;
 
@@ -14,6 +14,8 @@ public class Item : MonoBehaviour
     private bool can_be_picked = false;
 
     private InventoryManager inventoryManager;
+
+
 
 
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ public class Item : MonoBehaviour
         {
             Boolean is_added = inventoryManager.AddItem(itemName, sprite, this.tag);
 
-            if(is_added) { Destroy(gameObject, 0.1f); }
+            if(is_added) { Destroy(gameObject, 0.1f); SpawnTrash.trashCount--;}
 
         }
     }

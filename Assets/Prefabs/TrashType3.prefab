@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2459365762027915557}
   - component: {fileID: 5435787826102099268}
   - component: {fileID: 8672933595198126760}
+  - component: {fileID: 7758162301794811804}
   m_Layer: 3
   m_Name: TrashType3
   m_TagString: TrashType3
@@ -93,6 +94,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: PickupElement
   sprite: {fileID: 21300000, guid: 7e762211ba5cd45e9a7bf7597b9f897e, type: 3}
+--- !u!95 &7758162301794811804
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216040121426936011}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6cf872913a7754b7bae3af4202a7fa60, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7164912841433697296
 GameObject:
   m_ObjectHideFlags: 0

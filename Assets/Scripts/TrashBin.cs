@@ -48,8 +48,6 @@ public class TrashBin : MonoBehaviour
                     inventoryManager.RemoveItem(slotToBeRemoved);
                     numberOfTrashes++;
 
-
-                    Invoke(nameof(changeBinLocations), swapDelayInSeconds);
                     scoreManager.incrementScore();
                 }
 
@@ -85,38 +83,6 @@ public class TrashBin : MonoBehaviour
         }
     }
 
-    private void changeBinLocations()
-    {
-        string[] trashBinTags = { "BinType1", "BinType2", "BinType3", "BinType4" };
-        string currentBinTag = gameObject.tag;
-        string selectedTag = currentBinTag;
 
-
-        while (selectedTag == currentBinTag)
-        {
-            int randomIndex = UnityEngine.Random.Range(0, trashBinTags.Length); //generate 0-1-2-3
-            selectedTag = trashBinTags[randomIndex];
-        }
-
-        selectedBin = GameObject.FindWithTag(selectedTag);
-
-        if (selectedBin != null)
-        {
-
-            // Get the location of the selectedBin
-            Vector2 selectedBinLocation = selectedBin.transform.position;
-            Vector2 currentBinLocation = gameObject.transform.position;
-
-            // Assign the location to the current gameObject
-            transform.position = selectedBinLocation;
-
-            // Assign the current gameObject's location to the selectedBin
-            selectedBin.transform.position = currentBinLocation;
-
-
-        }
-
-
-    }
 
 }
