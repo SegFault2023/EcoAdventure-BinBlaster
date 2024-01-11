@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scene/GameOver.unity
     guid: 016f65e0e04b14647957c2443c57ef2d
   - enabled: 1
-    path: Assets/Scene/singlemultiSelect.unity
+    path: Assets/Scene/PlayTypeSelect.unity
     guid: b035c7e00e0764c2aa8cf75133376f4f
   - enabled: 1
     path: Assets/Scene/Login.unity
