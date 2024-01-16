@@ -16,13 +16,13 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if(transform.position != player.position)
+        if (transform.position != player.position)
         {
             Vector3 targetPosition = new Vector3(player.position.x, player.position.y, transform.position.z);
 

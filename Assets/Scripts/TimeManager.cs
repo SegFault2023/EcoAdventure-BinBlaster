@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+
+using UnityEngine.UI;
 public class TimeManager : MonoBehaviour
 {
     [SerializeField]
@@ -14,8 +16,6 @@ public class TimeManager : MonoBehaviour
     [SerializeField]
     private float startTimeInSeconds = 120f;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +25,12 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(remainingTime > 0)
+        if (remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
         }
 
-        else if(remainingTime < 0)
+        else if (remainingTime < 0)
         {
             remainingTime = 0;
             timeText.color = Color.red;
