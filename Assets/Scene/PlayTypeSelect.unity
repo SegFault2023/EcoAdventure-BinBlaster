@@ -457,7 +457,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1193694544}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1489522690}
+        m_TargetAssemblyTypeName: playerTypeSelect, Assembly-CSharp
+        m_MethodName: SinglePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1193694544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,6 +595,7 @@ GameObject:
   - component: {fileID: 1489522687}
   - component: {fileID: 1489522686}
   - component: {fileID: 1489522689}
+  - component: {fileID: 1489522690}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -675,6 +688,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f833aea6619c347049da6fcb1ed4b5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1489522690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489522685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ba0c97865d8432799ac13d94ee4331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1656106227
