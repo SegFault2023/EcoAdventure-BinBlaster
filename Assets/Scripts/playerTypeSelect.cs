@@ -10,4 +10,9 @@ public class playerTypeSelect : MonoBehaviour
         SceneManager.LoadSceneAsync("LevelMapSingle");
     }
 
+    public void MultiPlayer()
+    {
+        SceneManager.LoadSceneAsync("LevelMapMulti");
+    }
+
 }

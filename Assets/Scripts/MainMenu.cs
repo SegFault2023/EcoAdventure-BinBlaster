@@ -17,6 +17,6 @@ public class MainMenu : MonoBehaviour
 
     public void SelectPlayType()
     {
-        SceneManager.LoadSceneAsync(4);
+        SceneManager.LoadSceneAsync("PlayTypeSelect");
     }
 }
