@@ -4,12 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-
-using UnityEngine.UI;
 public class TimeManager : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text timeText;
+
+    [SerializeField]
+    private Countdown countdown; // Reference to the Countdown script
 
     private float remainingTime;
 
@@ -25,21 +26,26 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (remainingTime > 0)
+        if (!countdown.IsCountdownFinished())
         {
-            remainingTime -= Time.deltaTime;
+            // Display the translucent mask or perform any actions needed during the countdown
         }
-
-        else if (remainingTime < 0)
+        else
         {
-            remainingTime = 0;
-            timeText.color = Color.red;
-            SceneManager.LoadScene(2);
+            if (remainingTime > 0)
+            {
+                remainingTime -= Time.deltaTime;
+            }
+            else if (remainingTime < 0)
+            {
+                remainingTime = 0;
+                timeText.color = Color.red;
+                SceneManager.LoadScene(2);
+            }
 
+            int minutes = Mathf.FloorToInt(remainingTime / 60);
+            int seconds = Mathf.FloorToInt(remainingTime % 60);
+            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
-
-        int minutes = Mathf.FloorToInt(remainingTime / 60);
-        int seconds = Mathf.FloorToInt(remainingTime % 60);
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
