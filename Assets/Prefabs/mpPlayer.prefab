@@ -71,7 +71,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 8
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -107,9 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0834270a26d492b8a064b2ed66249c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothing: 0
   player: {fileID: 3876574128359216597}
-  boundX: 0.15
-  boundY: 0.05
+  minPosition: {x: 0, y: 0}
+  maxPosition: {x: 0, y: 0}
 --- !u!114 &1866110441663056332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,9 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0834270a26d492b8a064b2ed66249c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothing: 0
   player: {fileID: 3876574128359216597}
-  boundX: 0.15
-  boundY: 0.05
+  minPosition: {x: 0, y: 0}
+  maxPosition: {x: 0, y: 0}
 --- !u!114 &5486794121815978932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,9 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0834270a26d492b8a064b2ed66249c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothing: 0
   player: {fileID: 3876574128359216597}
-  boundX: 0.15
-  boundY: 0.05
+  minPosition: {x: 0, y: 0}
+  maxPosition: {x: 0, y: 0}
 --- !u!1 &2260668076264344443
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +353,7 @@ BoxCollider2D:
   m_Offset: {x: 0.005471632, y: -0.012022555}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.3}
     oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
@@ -499,6 +502,7 @@ MonoBehaviour:
   playerCamera: {fileID: 143111185647809771}
   speed: 3
   rb: {fileID: 5307123471439602361}
+  nameText: {fileID: 0}
   movementFilter:
     useTriggers: 0
     useLayerMask: 0

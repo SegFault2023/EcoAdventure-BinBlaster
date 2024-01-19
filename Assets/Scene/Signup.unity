@@ -1982,7 +1982,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1489522685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f833aea6619c347049da6fcb1ed4b5b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3910e589d135340dbbebb18d5aa6da28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1533391915
@@ -3105,8 +3105,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489522689}
-        m_TargetAssemblyTypeName: Login, Assembly-CSharp
-        m_MethodName: LogIn
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: LoginSignup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

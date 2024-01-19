@@ -5542,7 +5542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 1293600119}
-  startTimeInSeconds: 300
+  startTimeInSeconds: 120
 --- !u!4 &456186044
 Transform:
   m_ObjectHideFlags: 0
