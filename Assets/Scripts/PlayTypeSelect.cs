@@ -7,7 +7,7 @@ public class PlayTypeSelect : MonoBehaviour
 {
     public void SinglePlayer()
     {
-        SceneManager.LoadSceneAsync("LevelMap");
+        SceneManager.LoadSceneAsync("Level1");
     }
 
     public void MultiPlayer()

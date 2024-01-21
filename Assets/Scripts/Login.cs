@@ -7,16 +7,21 @@ public class Login : MonoBehaviour
 {
     public void SignUp()
     {
-        SceneManager.LoadSceneAsync(6);
+        SceneManager.LoadSceneAsync("Signup");
     }
 
     public void LogIn()
     {
-        SceneManager.LoadSceneAsync(5);
+        SceneManager.LoadSceneAsync("Login");
     }
 
     public void MainMenu()
     {
-        SceneManager.LoadSceneAsync(7);
+        SceneManager.LoadSceneAsync("MainMenu");
+    }
+
+    public void Level1()
+    {
+        SceneManager.LoadSceneAsync("Level1");
     }
 }
