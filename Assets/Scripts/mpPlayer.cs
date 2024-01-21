@@ -26,13 +26,15 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
     private List<RaycastHit2D> castCollision = new List<RaycastHit2D>(); // List the collision block
     private Vector2 lastMovedDirection;
     private Vector2 input;
+
     private Vector3 inputcontrol;
     private Vector2 inputMP;
-
-
-    
-    private bool pickFlag = false;
     private bool pickFlagmp = false;
+    private Vector2 lastMovedDirectionmp;
+    private float flipX;
+
+    private bool pickFlag = false;
+
 
     private bool can_be_picked = false;
 
@@ -43,7 +45,7 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
         {
             nameText.text = PhotonNetwork.NickName;
             sceneCamera = GameObject.Find("Main Camera");
-            sceneCamera.SetActive(false); 
+            sceneCamera.SetActive(false);
             playerCamera.SetActive(true);
         }
         else
@@ -64,42 +66,42 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
         {
 
-             ProccessInput();
+            ProccessInput();
+            Animate(input, lastMovedDirection, pickFlag);
+            bool success = MovePlayer(input);
+            Flip(input.x);
+            if (!success)
+            {
+                // Left/ Right
+                success = MovePlayer(new Vector2(input.x, 0));
+
+                if (!success)
+                {
+                    success = MovePlayer(new Vector2(0, input.y));
+                }
+            }
         }
         else
         {
-            smoothMovement(); 
+            smoothMovement();
+
         }
-        Animate();
-        Flip();
+
 
     }
 
 
-    private void Flip()
+    private void Flip(float x)
     {
-        if (input.x > 0)
+        if (x > 0)
         {
             sp.flipX = true;
         }
-        else sp.flipX = false;
+        else if (x < 0) sp.flipX = false;
     }
 
-    private void FixedUpdate()
-    {
-        bool success = MovePlayer(input);
 
-        if (!success)
-        {
-            // Left/ Right
-            success = MovePlayer(new Vector2(input.x, 0));
 
-            if (!success)
-            {
-                success = MovePlayer(new Vector2(0, input.y));
-            }
-        }
-    }
 
 
     private void ProccessInput()
@@ -159,14 +161,14 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
     }
 
 
-    private void Animate()
+    private void Animate(Vector2 inputmp, Vector2 lastMovedmp, bool pick)
     {
-        anim.SetFloat("MoveX", input.x);
-        anim.SetFloat("MoveY", input.y);
-        anim.SetFloat("MoveMagnitude", input.magnitude);
-        anim.SetFloat("LastMoveX", lastMovedDirection.x);
-        anim.SetFloat("LastMoveY", lastMovedDirection.y);
-        anim.SetBool("PickUp", pickFlag);
+        anim.SetFloat("MoveX", inputmp.x);
+        anim.SetFloat("MoveY", inputmp.y);
+        anim.SetFloat("MoveMagnitude", inputmp.magnitude);
+        anim.SetFloat("LastMoveX", lastMovedmp.x);
+        anim.SetFloat("LastMoveY", lastMovedmp.y);
+        anim.SetBool("PickUp", pick);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -195,34 +197,13 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     private void smoothMovement()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-
-        pickFlag = anim.GetBool("PickUp");
-
-        Debug.Log(Input.GetKeyDown(KeyCode.X));
-
-        if (Input.GetKeyDown(KeyCode.X) && can_be_picked)
-        {
-            pickFlag = true;
-        }
-
-        if (Input.GetKeyUp(KeyCode.X))
-        {
-            pickFlag = false;
-        }
-
-
-
-        if ((moveX == 0 && moveY == 0) && (input.x != 0 || input.y != 0))
-        {
-            lastMovedDirection = input;
-        }
-
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
-
-        inputcontrol = input;
+        //    private Vector3 inputcontrol;
+        // private Vector2 inputMP;
+        //private bool pickFlagmp = false;
+        // private Vector2 lastMovedDirectionmp;
+        transform.position = Vector3.Lerp(transform.position, smoothMove, Time.deltaTime * 10);
+        Animate(inputMP, lastMovedDirectionmp, pickFlagmp);
+        Flip(inputMP.x);
 
     }
 
@@ -235,11 +216,17 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(transform.position);
+            stream.SendNext(input);
+            stream.SendNext(lastMovedDirection);
+            stream.SendNext(pickFlag);
 
         }
         else if (stream.IsReading)
         {
-            transform.position = (Vector3) stream.ReceiveNext();
+            smoothMove = (Vector3)stream.ReceiveNext();
+            inputMP = (Vector2)stream.ReceiveNext();
+            lastMovedDirectionmp = (Vector2)stream.ReceiveNext();
+            pickFlagmp = (bool)stream.ReceiveNext();
         }
 
     }
