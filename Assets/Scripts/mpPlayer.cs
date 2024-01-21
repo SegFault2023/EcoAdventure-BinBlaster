@@ -94,16 +94,10 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
 
         Animate();
-        if (input.x < 0 && !facingLeft || input.x > 0 && facingLeft)
-        {
+        
+        
             Flip();
-        }
-        else
-        {
-            smoothMovement(); 
-        }
-        Animate();
-        Flip();
+        
 
     }
 

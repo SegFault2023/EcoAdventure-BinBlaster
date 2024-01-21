@@ -207,7 +207,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -465,6 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pv: {fileID: 4436875928815270409}
   playerCamera: {fileID: 143111185647809771}
+  scoretext: {fileID: 0}
   sp: {fileID: 7639906670189694768}
   speed: 4.5
   rb: {fileID: 5307123471439602361}
