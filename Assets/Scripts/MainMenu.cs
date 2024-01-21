@@ -12,7 +12,12 @@ public class MainMenu : MonoBehaviour
 
     public void LoginSignup()
     {
-        SceneManager.LoadSceneAsync(12);
+        SceneManager.LoadSceneAsync("Login");
+    }
+
+    public void SelectPlayType()
+    {
+        SceneManager.LoadSceneAsync("PlayTypeSelect");
     }
 
     public void Level1()
