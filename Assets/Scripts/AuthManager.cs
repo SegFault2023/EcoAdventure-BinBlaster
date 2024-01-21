@@ -4,6 +4,9 @@ using Firebase;
 using Firebase.Auth;
 using TMPro;
 using System.Threading.Tasks;
+using UnityEditor.VersionControl;
+using System;
+using UnityEngine.SceneManagement;
 
 public class AuthManager : MonoBehaviour
 {
@@ -22,11 +25,20 @@ public class AuthManager : MonoBehaviour
 
     //Register variables
     [Header("Register")]
-    public TMP_InputField usernameRegisterField;
+
     public TMP_InputField emailRegisterField;
     public TMP_InputField passwordRegisterField;
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
+    public TMP_Text confirmRegisterText;
+
+    private void Start()
+    {
+        warningLoginText.text = "";
+        confirmLoginText.text = "";
+        warningRegisterText.text = "";
+        confirmRegisterText.text = "";
+    }
 
     void Awake()
     {
@@ -63,7 +75,7 @@ public class AuthManager : MonoBehaviour
     public void RegisterButton()
     {
         //Call the register coroutine passing the email, password, and username
-        StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, usernameRegisterField.text));
+        StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, "Anonymous"));
     }
 
     private IEnumerator Login(string _email, string _password)
@@ -81,25 +93,12 @@ public class AuthManager : MonoBehaviour
             AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
 
             string message = "Login Failed!";
-            switch (errorCode)
-            {
-                case AuthError.MissingEmail:
-                    message = "Missing Email";
-                    break;
-                case AuthError.MissingPassword:
-                    message = "Missing Password";
-                    break;
-                case AuthError.WrongPassword:
-                    message = "Wrong Password";
-                    break;
-                case AuthError.InvalidEmail:
-                    message = "Invalid Email";
-                    break;
-                case AuthError.UserNotFound:
-                    message = "Account does not exist";
-                    break;
-            }
+
             warningLoginText.text = message;
+
+            warningLoginText.color = Color.red;
+            warningLoginText.text = message;
+            confirmLoginText.text = "";
         }
         else
         {
@@ -107,24 +106,26 @@ public class AuthManager : MonoBehaviour
             //Now get the result
             User = LoginTask.Result.User;
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
+
+            confirmLoginText.color = Color.green;
             warningLoginText.text = "";
-            confirmLoginText.text = "Logged In";
+            confirmLoginText.text = "Logged In!";
+            SceneManager.LoadSceneAsync("PlayTypeSelect");
+
         }
     }
 
-    
+
 
     private IEnumerator Register(string _email, string _password, string _username)
     {
-        if (_username == "")
-        {
-            //If the username field is blank show a warning
-            warningRegisterText.text = "Missing Username";
-        }
-        else if (passwordRegisterField.text != passwordRegisterVerifyField.text)
+        warningRegisterText.color = Color.red;
+        confirmRegisterText.color = Color.green;
+
+        if (passwordRegisterField.text != passwordRegisterVerifyField.text)
         {
             //If the password does not match show a warning
-            warningRegisterText.text = "Password Does Not Match!";
+            warningRegisterText.text = "Sign Up Failed!";
         }
         else
         {
@@ -140,22 +141,24 @@ public class AuthManager : MonoBehaviour
                 FirebaseException firebaseEx = RegisterTask.Exception.GetBaseException() as FirebaseException;
                 AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
 
-                string message = "Register Failed!";
+                string message = "Sign Up Failed!";
                 switch (errorCode)
                 {
                     case AuthError.MissingEmail:
-                        message = "Missing Email";
+                        message = "Sign Up Failed!";
                         break;
                     case AuthError.MissingPassword:
-                        message = "Missing Password";
+                        message = "Sign Up Failed!";
                         break;
                     case AuthError.WeakPassword:
-                        message = "Weak Password";
+                        message = "Sign Up Failed!";
                         break;
                     case AuthError.EmailAlreadyInUse:
-                        message = "Email Already In Use";
+                        message = "Sign Up Failed!";
                         break;
                 }
+
+                confirmRegisterText.text = "";
                 warningRegisterText.text = message;
             }
             else
@@ -170,7 +173,7 @@ public class AuthManager : MonoBehaviour
                     UserProfile profile = new UserProfile { DisplayName = _username };
 
                     //Call the Firebase auth update user profile function passing the profile with the username
-                    Task ProfileTask = User.UpdateUserProfileAsync(profile);
+                    System.Threading.Tasks.Task ProfileTask = User.UpdateUserProfileAsync(profile);
                     //Wait until the task completes
                     yield return new WaitUntil(predicate: () => ProfileTask.IsCompleted);
 
@@ -186,11 +189,23 @@ public class AuthManager : MonoBehaviour
                     {
                         //Username is now set
                         //Now return to login screen
-                        UIManager.instance.LoginScreen();
+                        confirmRegisterText.text = "Sign Up Successful!";
                         warningRegisterText.text = "";
+
+                        //wait 2 seconds 
+                        // UIManager.instance.LoginScreen();
+
+                        Invoke(nameof(GoLoginScreen), 2f);
+
+
                     }
                 }
             }
         }
+    }
+
+    private void GoLoginScreen()
+    {
+        UIManager.instance.LoginScreen();
     }
 }

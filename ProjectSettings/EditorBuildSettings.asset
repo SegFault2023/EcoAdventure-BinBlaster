@@ -5,6 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scene/Signup.unity
+    guid: 83bfe286b60054bdfad45c227acb0943
+  - enabled: 1
+    path: Assets/Scene/MainMenu.unity
+    guid: ee2d402c038504052ad9d8b1e305f711
+  - enabled: 1
+    path: Assets/Scene/Login.unity
+    guid: 4200c6a8f302f47ebba060fc7887d01f
+  - enabled: 1
+    path: Assets/Scene/PlayTypeSelect.unity
+    guid: b035c7e00e0764c2aa8cf75133376f4f
   - enabled: 1
     path: Assets/Scene/mplobi.unity
     guid: c1dc6292321586149938fa67a87b795d
@@ -45,15 +57,6 @@ EditorBuildSettings:
     path: Assets/Scene/LevelMapSingle.unity
     guid: 9f39a3ae1777d48fab3310b09bf6170f
   - enabled: 1
-    path: Assets/Scene/Login.unity
-    guid: 4200c6a8f302f47ebba060fc7887d01f
-  - enabled: 1
-    path: Assets/Scene/MainMenu.unity
-    guid: ee2d402c038504052ad9d8b1e305f711
-  - enabled: 1
-    path: Assets/Scene/PlayTypeSelect.unity
-    guid: b035c7e00e0764c2aa8cf75133376f4f
-  - enabled: 1
-    path: Assets/Scene/Signup.unity
-    guid: 83bfe286b60054bdfad45c227acb0943
+    path: Assets/Scene/LevelMapMulti.unity
+    guid: 94f6e87b808d24e48b49afd86578100e
   m_configObjects: {}

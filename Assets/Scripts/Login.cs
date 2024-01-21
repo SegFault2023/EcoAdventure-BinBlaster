@@ -20,8 +20,4 @@ public class Login : MonoBehaviour
         SceneManager.LoadSceneAsync(7);
     }
 
-    public void MainMenu()
-    {
-        SceneManager.LoadSceneAsync(13);
-    }
 }

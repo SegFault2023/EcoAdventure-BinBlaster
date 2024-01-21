@@ -39,7 +39,7 @@ remainingTime -= Time.deltaTime;
             remainingTime = 0;
             timeText.color = Color.red;
             timeended = true;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("LevelMapMulti");
 
         }
 
