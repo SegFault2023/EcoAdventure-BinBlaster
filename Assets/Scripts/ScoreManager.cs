@@ -5,7 +5,7 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    private static int score;
+    public static int score;
 
     [SerializeField]
     private int incrementQuantity = 1;

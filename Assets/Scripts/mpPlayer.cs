@@ -14,9 +14,13 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     private GameObject sceneCamera;
     public GameObject playerCamera;
-
+    int  scoreme = ScoreManager.getScore();
+   // int scoreother;
+    public TextMeshProUGUI scoretext;
+    private bool levelend = TimeManager.getEND();
     private Vector2 smoothMove;
     Animator anim;
+    string isim;
     public float speed = 0.5f;
     public Rigidbody2D rb;
     public TextMeshProUGUI nameText;
@@ -40,7 +44,9 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
         anim = GetComponent<Animator>();
         if (photonView.IsMine)
         {
-            nameText.text = PhotonNetwork.NickName;
+            isim = PhotonNetwork.NickName;
+           nameText.text = PhotonNetwork.NickName ;
+            PhotonNetwork.NickName = nameText.text;
         sceneCamera = GameObject.Find("Main Camera");
         sceneCamera.SetActive(false); 
         playerCamera.SetActive(true);
@@ -48,21 +54,35 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
             nameText.text = pv.Owner.NickName;
+   
         }
     }
 
     private void Update()
     {
-
+        levelend = TimeManager.getEND();
         if (photonView.IsMine)
             {
 
              ProccessInput();
+            if(levelend == false)
+            {
+            nameText.text = isim+ " Score : " + ScoreManager.getScore().ToString();
+           PhotonNetwork.NickName = nameText.text ;
+
             }
             else
             {
+                PhotonNetwork.NickName = isim;
+            }
+
+        }
+        else
+            {
             smoothMovement();
-             }
+            nameText.text = pv.Owner.NickName ; 
+
+        }
 
 
         Animate();
@@ -204,13 +224,19 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+        
         if (stream.IsWriting)
         {
+
             stream.SendNext(inputcontrol);
+          //  stream.SendNext(ScoreManager.getScore());
+
         }
         else if (stream.IsReading)
         {
             smoothMove = (Vector2) stream.ReceiveNext();
+          //  scoreother = (int) stream.ReceiveNext();
+
         }
     }
 

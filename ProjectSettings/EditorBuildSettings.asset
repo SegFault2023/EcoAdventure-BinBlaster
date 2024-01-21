@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scene/mplobi.unity
     guid: c1dc6292321586149938fa67a87b795d
   - enabled: 1
+    path: Assets/Scene/level1MP.unity
+    guid: 134456fb5a711e7449c62c542271f218
+  - enabled: 1
     path: Assets/Scene/level4mp.unity
     guid: d038ec9a330516d43a9503499ecdb2cf
   - enabled: 1
@@ -17,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/level2mp.unity
     guid: 07038f613f4a39041b34440c22249033
-  - enabled: 1
-    path: Assets/Scene/level1MP.unity
-    guid: 134456fb5a711e7449c62c542271f218
   - enabled: 1
     path: Assets/Scene/beachScenemp.unity
     guid: 4227a559cd100fb4b94ae47f7ee6188d
