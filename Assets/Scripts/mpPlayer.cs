@@ -14,7 +14,7 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     private GameObject sceneCamera;
     public GameObject playerCamera;
-
+    public SpriteRenderer sp;
     private Vector2 smoothMove;
     Animator anim;
     public float speed = 0.5f;
@@ -26,13 +26,14 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
     private List<RaycastHit2D> castCollision = new List<RaycastHit2D>(); // List the collision block
     private Vector2 lastMovedDirection;
     private Vector2 input;
-    private Vector2 inputcontrol;
+    private Vector3 inputcontrol;
+    private Vector2 inputMP;
 
 
-
-
-    private bool facingLeft = true;
+    
     private bool pickFlag = false;
+    private bool pickFlagmp = false;
+
     private bool can_be_picked = false;
 
     private void Start()
@@ -41,45 +42,47 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
         {
             nameText.text = PhotonNetwork.NickName;
-        sceneCamera = GameObject.Find("Main Camera");
-        sceneCamera.SetActive(false); 
-        playerCamera.SetActive(true);
+            sceneCamera = GameObject.Find("Main Camera");
+            sceneCamera.SetActive(false); 
+            playerCamera.SetActive(true);
         }
         else
         {
             nameText.text = pv.Owner.NickName;
         }
+
+        tags.Add("TrashType1");
+        tags.Add("TrashType2");
+        tags.Add("TrashType3");
+        tags.Add("TrashType4");
+
     }
 
     private void Update()
     {
 
         if (photonView.IsMine)
-            {
+        {
 
              ProccessInput();
-            }
-            else
-            {
-            smoothMovement();
-             }
-
-
-        Animate();
-        if (input.x < 0 && !facingLeft || input.x > 0 && facingLeft)
-        {
-            Flip();
         }
+        else
+        {
+            smoothMovement(); 
+        }
+        Animate();
+        Flip();
+
     }
 
 
     private void Flip()
     {
-        // to face the character right 
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
-        facingLeft = !facingLeft;
+        if (input.x > 0)
+        {
+            sp.flipX = true;
+        }
+        else sp.flipX = false;
     }
 
     private void FixedUpdate()
@@ -106,7 +109,7 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         pickFlag = anim.GetBool("PickUp");
 
-
+        Debug.Log(Input.GetKeyDown(KeyCode.X));
 
         if (Input.GetKeyDown(KeyCode.X) && can_be_picked)
         {
@@ -130,7 +133,7 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         inputcontrol = input;
 
-        input.Normalize();
+
 
     }
 
@@ -192,10 +195,35 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     private void smoothMovement()
     {
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
 
-        input = Vector3.Lerp(input, smoothMove, Time.deltaTime * 10);
-        
-        
+        pickFlag = anim.GetBool("PickUp");
+
+        Debug.Log(Input.GetKeyDown(KeyCode.X));
+
+        if (Input.GetKeyDown(KeyCode.X) && can_be_picked)
+        {
+            pickFlag = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.X))
+        {
+            pickFlag = false;
+        }
+
+
+
+        if ((moveX == 0 && moveY == 0) && (input.x != 0 || input.y != 0))
+        {
+            lastMovedDirection = input;
+        }
+
+        input.x = Input.GetAxisRaw("Horizontal");
+        input.y = Input.GetAxisRaw("Vertical");
+
+        inputcontrol = input;
+
     }
 
 
@@ -206,12 +234,14 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(inputcontrol);
+            stream.SendNext(transform.position);
+
         }
         else if (stream.IsReading)
         {
-            smoothMove = (Vector2) stream.ReceiveNext();
+            transform.position = (Vector3) stream.ReceiveNext();
         }
+
     }
 
 

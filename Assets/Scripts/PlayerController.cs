@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        tags.Add("TrashType1");
+        tags.Add("TrashType2");
+        tags.Add("TrashType3");
+        tags.Add("TrashType4");
         anim = GetComponent<Animator>();
     }
 
