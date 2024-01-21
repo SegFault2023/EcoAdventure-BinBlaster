@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/LevelMapMulti.unity
     guid: 94f6e87b808d24e48b49afd86578100e
+  - enabled: 1
+    path: Assets/Scene/ScoreboardSingle.unity
+    guid: a6f9777f019fd4b2da6efda12f7f1ffa
   m_configObjects: {}
