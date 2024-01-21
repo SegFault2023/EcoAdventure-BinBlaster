@@ -14,6 +14,9 @@ public class TimeManagerSingle : MonoBehaviour
     [SerializeField]
     private float startTimeInSeconds = 120f;
 
+    [SerializeField]
+    private Countdown countdown;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,21 +26,28 @@ public class TimeManagerSingle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (remainingTime > 0)
+        if (!countdown.IsCountdownFinished())
         {
-            remainingTime -= Time.deltaTime;
-        }
-        else if (remainingTime <= 0)
-        {
-            remainingTime = 0;
-            timeText.color = Color.red;
 
-
-            SceneManager.LoadScene("ScoreboardSingle");
         }
 
-        int minutes = Mathf.FloorToInt(remainingTime / 60);
-        int seconds = Mathf.FloorToInt(remainingTime % 60);
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        else
+        {
+            if (remainingTime > 0)
+            {
+                remainingTime -= Time.deltaTime;
+            }
+            else if (remainingTime <= 0)
+            {
+                remainingTime = 0;
+                timeText.color = Color.red;
+                SceneManager.LoadScene("ScoreboardSingle");
+            }
+
+            int minutes = Mathf.FloorToInt(remainingTime / 60);
+            int seconds = Mathf.FloorToInt(remainingTime % 60);
+            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
     }
+
 }
