@@ -20748,28 +20748,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1427665586}
-  - component: {fileID: 1427665585}
+  - component: {fileID: 1427665587}
+  - component: {fileID: 1427665588}
   m_Layer: 0
-  m_Name: TimeManager
+  m_Name: Time Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1427665585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427665584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 696804c224155844ea4d6b68c1c9f373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeText: {fileID: 271477328}
-  startTimeInSeconds: 300
 --- !u!4 &1427665586
 Transform:
   m_ObjectHideFlags: 0
@@ -20786,6 +20773,34 @@ Transform:
   - {fileID: 430890589}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1427665587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427665584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2c331220cba476899b67c6a48ce2ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countdownTime: 120
+  countdownText: {fileID: 271477328}
+--- !u!114 &1427665588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427665584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696804c224155844ea4d6b68c1c9f373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 271477328}
+  startTimeInSeconds: 120
 --- !u!1 &1435107282
 GameObject:
   m_ObjectHideFlags: 0
