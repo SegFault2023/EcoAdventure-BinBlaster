@@ -207,8 +207,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489522689}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: MainMen
+        m_TargetAssemblyTypeName: Login, Assembly-CSharp
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -337,19 +337,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1080909666}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1489522689}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: mpLobi
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1080909666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +358,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0429044c45eee4a92be0a24e1a330648, type: 3}
+  m_Sprite: {fileID: 21300000, guid: abc1721cadf454ed3ac274ab3fd3cf8b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -470,9 +458,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1489522689}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: LevelScene
+      - m_Target: {fileID: 1489522690}
+        m_TargetAssemblyTypeName: playerTypeSelect, Assembly-CSharp
+        m_MethodName: SinglePlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -502,7 +490,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1d3aa949283334061a2947a3c160e383, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fc2b1470703a40479bb7a777cf52190, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -607,6 +595,7 @@ GameObject:
   - component: {fileID: 1489522687}
   - component: {fileID: 1489522686}
   - component: {fileID: 1489522689}
+  - component: {fileID: 1489522690}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -698,7 +687,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1489522685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3910e589d135340dbbebb18d5aa6da28, type: 3}
+  m_Script: {fileID: 11500000, guid: f833aea6619c347049da6fcb1ed4b5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1489522690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489522685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ba0c97865d8432799ac13d94ee4331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1656106227
