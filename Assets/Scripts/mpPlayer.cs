@@ -14,7 +14,7 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     private GameObject sceneCamera;
     public GameObject playerCamera;
-
+    public SpriteRenderer sp;
     private Vector2 smoothMove;
     Animator anim;
     public float speed = 0.5f;
@@ -26,13 +26,16 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
     private List<RaycastHit2D> castCollision = new List<RaycastHit2D>(); // List the collision block
     private Vector2 lastMovedDirection;
     private Vector2 input;
-    private Vector2 inputcontrol;
 
+    private Vector3 inputcontrol;
+    private Vector2 inputMP;
+    private bool pickFlagmp = false;
+    private Vector2 lastMovedDirectionmp;
+    private float flipX;
 
-
-
-    private bool facingLeft = true;
     private bool pickFlag = false;
+   
+
     private bool can_be_picked = false;
 
     private void Start()
@@ -41,62 +44,64 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
         {
             nameText.text = PhotonNetwork.NickName;
-        sceneCamera = GameObject.Find("Main Camera");
-        sceneCamera.SetActive(false); 
-        playerCamera.SetActive(true);
+            sceneCamera = GameObject.Find("Main Camera");
+            sceneCamera.SetActive(false); 
+            playerCamera.SetActive(true);
         }
         else
         {
             nameText.text = pv.Owner.NickName;
         }
+
+        tags.Add("TrashType1");
+        tags.Add("TrashType2");
+        tags.Add("TrashType3");
+        tags.Add("TrashType4");
+
     }
 
     private void Update()
     {
 
         if (photonView.IsMine)
-            {
+        {
 
              ProccessInput();
-            }
-            else
-            {
-            smoothMovement();
-             }
-
-
-        Animate();
-        if (input.x < 0 && !facingLeft || input.x > 0 && facingLeft)
-        {
-            Flip();
-        }
-    }
-
-
-    private void Flip()
-    {
-        // to face the character right 
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
-        facingLeft = !facingLeft;
-    }
-
-    private void FixedUpdate()
-    {
-        bool success = MovePlayer(input);
-
-        if (!success)
-        {
-            // Left/ Right
-            success = MovePlayer(new Vector2(input.x, 0));
-
+             Animate(input,lastMovedDirection,pickFlag);
+             bool success = MovePlayer(input);
+               Flip(input.x);
             if (!success)
             {
-                success = MovePlayer(new Vector2(0, input.y));
+                // Left/ Right
+                success = MovePlayer(new Vector2(input.x, 0));
+
+                if (!success)
+                {
+                    success = MovePlayer(new Vector2(0, input.y));
+                }
             }
         }
+        else
+        {
+            smoothMovement();
+            
+        }
+        
+
     }
+
+
+    private void Flip(float x)
+    {
+        if (x > 0)
+        {
+            sp.flipX = true;
+        }
+        else if (x < 0) sp.flipX = false;
+    }
+
+
+
 
 
     private void ProccessInput()
@@ -106,7 +111,7 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         pickFlag = anim.GetBool("PickUp");
 
-
+        Debug.Log(Input.GetKeyDown(KeyCode.X));
 
         if (Input.GetKeyDown(KeyCode.X) && can_be_picked)
         {
@@ -130,7 +135,7 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         inputcontrol = input;
 
-        input.Normalize();
+
 
     }
 
@@ -156,14 +161,14 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
     }
 
 
-    private void Animate()
+    private void Animate(Vector2 inputmp, Vector2 lastMovedmp, bool pick)
     {
-        anim.SetFloat("MoveX", input.x);
-        anim.SetFloat("MoveY", input.y);
-        anim.SetFloat("MoveMagnitude", input.magnitude);
-        anim.SetFloat("LastMoveX", lastMovedDirection.x);
-        anim.SetFloat("LastMoveY", lastMovedDirection.y);
-        anim.SetBool("PickUp", pickFlag);
+        anim.SetFloat("MoveX", inputmp.x);
+        anim.SetFloat("MoveY", inputmp.y);
+        anim.SetFloat("MoveMagnitude", inputmp.magnitude);
+        anim.SetFloat("LastMoveX", lastMovedmp.x);
+        anim.SetFloat("LastMoveY", lastMovedmp.y);
+        anim.SetBool("PickUp", pick);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -192,10 +197,14 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     private void smoothMovement()
     {
+        //    private Vector3 inputcontrol;
+       // private Vector2 inputMP;
+        //private bool pickFlagmp = false;
+       // private Vector2 lastMovedDirectionmp;
+        transform.position = Vector3.Lerp(transform.position, smoothMove, Time.deltaTime * 10);
+        Animate(inputMP, lastMovedDirectionmp, pickFlagmp);
+        Flip(inputMP.x);
 
-        input = Vector3.Lerp(input, smoothMove, Time.deltaTime * 10);
-        
-        
     }
 
 
@@ -206,12 +215,20 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(inputcontrol);
+            stream.SendNext(transform.position);
+            stream.SendNext(input);
+            stream.SendNext(lastMovedDirection);
+            stream.SendNext(pickFlag);
+
         }
         else if (stream.IsReading)
         {
-            smoothMove = (Vector2) stream.ReceiveNext();
+            smoothMove = (Vector3) stream.ReceiveNext();
+            inputMP = (Vector2)stream.ReceiveNext();
+            lastMovedDirectionmp = (Vector2)stream.ReceiveNext();
+            pickFlagmp = (bool)stream.ReceiveNext();
         }
+
     }
 
 
