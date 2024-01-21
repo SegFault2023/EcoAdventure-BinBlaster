@@ -315,7 +315,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.005471632, y: -0.012022555}
+  m_Offset: {x: 0.0046900436, y: -0.0073330477}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.3}
@@ -326,7 +326,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14171973, y: 0.264444}
+  m_Size: {x: 0.07137665, y: 0.04559897}
   m_EdgeRadius: 0
 --- !u!50 &5307123471439602361
 Rigidbody2D:
@@ -416,7 +416,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1367947571, guid: fee8967f7f8d04e1d88230bdd64846d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -427,7 +427,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &4436875928815270409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,8 +465,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pv: {fileID: 4436875928815270409}
   playerCamera: {fileID: 143111185647809771}
-  scoretext: {fileID: 0}
-  speed: 3
+  sp: {fileID: 7639906670189694768}
+  speed: 4.5
   rb: {fileID: 5307123471439602361}
   nameText: {fileID: 5761576302470002012}
   movementFilter:
@@ -484,7 +484,8 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   collisionOffset: 0.05
-  tags: []
+  tags:
+  - 
 --- !u!114 &7216481026382648499
 MonoBehaviour:
   m_ObjectHideFlags: 0
