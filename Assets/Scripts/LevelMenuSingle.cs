@@ -1,33 +1,47 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class LevelMenuSingle : MonoBehaviour
 {
-    public Button[] buttons;
-    public GameObject[] buttonMasks;
+    public Button button;
+    public GameObject buttonMask;
+    [SerializeField] private bool unlocked = false;
+    [SerializeField] private int levelNo;
 
-    private void Awake()
+    private void Update()
     {
-        for (int i = 0; i < buttons.Length; i++)
-            buttons[i].interactable = true;
-
-        //buttonMasks[i].SetActive(false);
-
+        UpdateLevelMask();
+        UpdateLevelStatus();
     }
 
-    public void OpenLevel(int levelId)
+    public void UpdateLevelStatus()
     {
-        string levelName = "Level" + levelId;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(levelName);
+        int levelNumber = PlayerPrefs.GetInt("CurrentLevelNumber", 1);
+        if (PlayerPrefs.GetInt("LevelStatus", 0) == 1 && levelNumber == levelNo)
+            unlocked = true;
+
+        Debug.Log("ayoo level number: " + levelNo + " unlocked? " + unlocked);
     }
-
-    // Call this method when a level is successfully completed
-    public void CompleteLevel(int levelId)
+    private void UpdateLevelMask()
     {
-        buttonMasks[levelId].SetActive(false);
+        if (!unlocked)
+        {
+            buttonMask.gameObject.SetActive(true);
+            Debug.Log("If not unlocked");
+        }
 
-        // Save the completion status to PlayerPrefs
-        PlayerPrefs.SetInt("LevelCompleted" + levelId, 1);
-        PlayerPrefs.Save();
+        if (unlocked)
+        {
+            buttonMask.gameObject.SetActive(false);
+            Debug.Log("If  unlocked");
+        }
+
+    }
+    public void PressSelection(string LevelName)
+    {
+        SceneManager.LoadScene(LevelName);
     }
 }

@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TimeManagerSingle : MonoBehaviour
@@ -15,24 +13,25 @@ public class TimeManagerSingle : MonoBehaviour
     private float startTimeInSeconds = 120f;
 
     [SerializeField]
-    public CountDown countdown;
+    private CountDown countdown;
+
+    [SerializeField]
+    private int currentLevelNumber = 1; // Set the level number for each scene
 
     // Start is called before the first frame update
     void Start()
     {
         remainingTime = startTimeInSeconds;
+        PlayerPrefs.SetInt("CurrentLevelNumber", currentLevelNumber);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         if (!countdown.IsCountdownFinished())
         {
-
+            // Countdown actions if needed
         }
-
         else
         {
             if (remainingTime > 0)
@@ -43,6 +42,7 @@ public class TimeManagerSingle : MonoBehaviour
             {
                 remainingTime = 0;
                 timeText.color = Color.red;
+                // Load the Scoreboard scene
                 SceneManager.LoadScene("ScoreboardSingle");
             }
 
@@ -51,5 +51,4 @@ public class TimeManagerSingle : MonoBehaviour
             timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
-
 }

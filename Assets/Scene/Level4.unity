@@ -13914,6 +13914,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeText: {fileID: 148839098}
   startTimeInSeconds: 120
+  countdown: {fileID: 0}
+  currentLevelNumber: 4
 --- !u!1 &1479266647
 GameObject:
   m_ObjectHideFlags: 0

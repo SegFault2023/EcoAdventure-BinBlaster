@@ -9334,6 +9334,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeText: {fileID: 1739664693}
   startTimeInSeconds: 120
+  countdown: {fileID: 0}
+  currentLevelNumber: 2
 --- !u!1001 &508588509
 PrefabInstance:
   m_ObjectHideFlags: 0
