@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     private bool facingLeft = true;
     private bool pickFlag = false;
     private bool can_be_picked = false;
+    public GameFlow gameFlowController;
+    public CountDown count;
+
 
     private void Start()
     {
@@ -31,13 +34,17 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        
-        ProccessInput();
-        
-        Animate();
-        if (input.x < 0 && !facingLeft || input.x > 0 && facingLeft)
+
+
+        if (!(gameFlowController.getIsStopped()) && count.countdownFinished == true)
         {
-            Flip();
+            ProccessInput();
+
+            Animate();
+            if (input.x < 0 && !facingLeft || input.x > 0 && facingLeft)
+            {
+                Flip();
+            }
         }
     }
 

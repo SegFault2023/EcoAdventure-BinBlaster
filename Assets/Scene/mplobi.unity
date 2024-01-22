@@ -2518,7 +2518,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 140528181}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: SimOrMul
+        m_MethodName: MainMen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

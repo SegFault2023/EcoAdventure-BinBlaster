@@ -10,34 +10,22 @@ public class levelmenuMulti : MonoBehaviour
 
     private void Awake()
     {
-        int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
-
         for (int i = 0; i < buttons.Length; i++)
-        {
-            buttons[i].interactable = false;
+            buttons[i].interactable = true;
 
-            // Set initial color to black and white
-            //buttons[i].image.color = Color.gray;
+        //buttonMasks[i].SetActive(false);
 
-            // Activate or deactivate the mask based on level lock
-            buttonMasks[i].SetActive(!buttons[i].interactable);
-        }
-
-        if (unlockedLevel > 0 && unlockedLevel <= buttons.Length)
-        {
-            for (int i = 0; i < unlockedLevel; i++)
-            {
-                buttons[i].interactable = true;
-
-                // Change color to white for unlocked buttons
-                //buttons[i].image.color = Color.white;
-
-                // Activate or deactivate the mask based on level lock
-                buttonMasks[i].SetActive(!buttons[i].interactable);
-            }
-        }
     }
 
+    // Call this method when a level is successfully completed
+    public void CompleteLevel(int levelId)
+    {
+        buttonMasks[levelId].SetActive(false);
+
+        // Save the completion status to PlayerPrefs
+        PlayerPrefs.SetInt("LevelCompleted" + levelId, 1);
+        PlayerPrefs.Save();
+    }
     public void OpenLevel(int levelId)
     {
         if(levelId == 1)

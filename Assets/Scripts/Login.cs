@@ -17,7 +17,7 @@ public class Login : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadSceneAsync(7);
+        SceneManager.LoadSceneAsync("MainMenu");
     }
 
 }

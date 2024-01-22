@@ -23,47 +23,47 @@ public class MainMenu : MonoBehaviour
 
     public void Level1()
     {
-        SceneManager.LoadSceneAsync(8);
+        SceneManager.LoadSceneAsync("Level1");
     }
     public void Level2()
     {
-        SceneManager.LoadSceneAsync(6);
+        SceneManager.LoadSceneAsync("Level2");
     }
     public void Level3()
     {
-        SceneManager.LoadSceneAsync(9);
+        SceneManager.LoadSceneAsync("Level3");
     }
     public void Level4()
     {
-        SceneManager.LoadSceneAsync(10);
+        SceneManager.LoadSceneAsync("Level4");
     }
 
     public void LevelScene()
     {
-        SceneManager.LoadSceneAsync(11);
+        SceneManager.LoadSceneAsync("LevelMapSingle");
 
     }
 
     public void MainMen()
     {
-        SceneManager.LoadSceneAsync(13);
+        SceneManager.LoadSceneAsync("MainMenu");
 
     }
 
     public void SimOrMul()
     {
-        SceneManager.LoadSceneAsync(14);
+        SceneManager.LoadSceneAsync("PlayTypeSelect");
 
     }
     public void SignUp()
     {
-        SceneManager.LoadSceneAsync(15);
+        SceneManager.LoadSceneAsync("Signup");
 
     }
 
     public void mpLobi()
     {
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync("mblobi");
 
     }
 
