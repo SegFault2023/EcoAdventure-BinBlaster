@@ -23176,7 +23176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 2046544086}
-  startTimeInSeconds: 120
+  startTimeInSeconds: 90
   countdown: {fileID: 751506995}
   currentLevelNumber: 1
 --- !u!4 &1785665839
