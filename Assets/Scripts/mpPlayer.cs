@@ -73,6 +73,16 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
         levelend = TimeManager.getEND();
         if (photonView.IsMine)
         {
+            if (levelend == false)
+            {
+                nameText.text = isim + " Score : " + ScoreManager.getScore().ToString();
+                PhotonNetwork.NickName = nameText.text;
+
+            }
+            else
+            {
+                PhotonNetwork.NickName = isim;
+            }
 
             ProccessInput();
             Animate(input, lastMovedDirection, pickFlag);
@@ -92,6 +102,7 @@ public class mpPlayer : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
             smoothMovement();
+            nameText.text = pv.Owner.NickName;
 
         }
 

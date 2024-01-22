@@ -12,7 +12,8 @@ public class playerTypeSelect : MonoBehaviour
 
     public void MultiPlayer()
     {
-        SceneManager.LoadSceneAsync("LevelMapMulti");
+        SceneManager.LoadSceneAsync("mplobi");
     }
+
 
 }

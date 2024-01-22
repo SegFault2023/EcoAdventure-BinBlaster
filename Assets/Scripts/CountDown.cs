@@ -13,7 +13,7 @@ public class CountDown : MonoBehaviour
     [SerializeField]
     private Image translucentMask; // Reference to the translucent mask image
 
-    private bool countdownFinished = false;
+    public bool countdownFinished = false;
 
     void Start()
     {

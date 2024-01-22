@@ -4,9 +4,9 @@ using Firebase;
 using Firebase.Auth;
 using TMPro;
 using System.Threading.Tasks;
-using UnityEditor.VersionControl;
-using System;
 using UnityEngine.SceneManagement;
+
+using System;
 
 public class AuthManager : MonoBehaviour
 {
@@ -206,6 +206,6 @@ public class AuthManager : MonoBehaviour
 
     private void GoLoginScreen()
     {
-        UIManager.instance.LoginScreen();
+        UIauthManager.instance.LoginScreen();
     }
 }

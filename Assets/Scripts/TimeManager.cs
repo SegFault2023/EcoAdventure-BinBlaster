@@ -14,7 +14,7 @@ public class TimeManager : MonoBehaviour
 
     [SerializeField]
     private float startTimeInSeconds = 120f;
-
+    public CountDown count;
 
 
     // Start is called before the first frame update
@@ -28,24 +28,28 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(remainingTime > 0)
+
+        if(count.countdownFinished == true)
         {
-remainingTime -= Time.deltaTime;
-            timeended = false;
+            if (remainingTime > 0)
+            {
+                remainingTime -= Time.deltaTime;
+                timeended = false;
+            }
+
+            else if (remainingTime <= 0)
+            {
+                remainingTime = 0;
+                timeText.color = Color.red;
+                timeended = true;
+
+            }
+
+            int minutes = Mathf.FloorToInt(remainingTime / 60);
+            int seconds = Mathf.FloorToInt(remainingTime % 60);
+            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
-
-        else if(remainingTime <= 0)
-        {
-            remainingTime = 0;
-            timeText.color = Color.red;
-            timeended = true;
-            SceneManager.LoadScene("LevelMapMulti");
-
-        }
-
-        int minutes = Mathf.FloorToInt(remainingTime / 60);
-        int seconds = Mathf.FloorToInt(remainingTime % 60);
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        
     }
 
     public static bool getEND() { return timeended; }
