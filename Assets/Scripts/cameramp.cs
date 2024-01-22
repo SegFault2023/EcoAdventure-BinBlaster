@@ -7,62 +7,45 @@ public class cameramp : MonoBehaviour
 {
     [Header("Following Object")]
     public Transform player;
-    [Header("Boundaries")]
-    public float boundX = 0.15f;
-    public float boundY = 0.05f;
+   
 
-    private Tilemap tilemap;
-    private BoundsInt bounds;
+    public float smoothing = 0.07f;
+
+    [Header("Range")]
+    public Vector2 minPosition;
+    public Vector2 maxPosition;
 
     void Start()
     {
 
+        if (GameObject.Find("City"))
+        {
+            minPosition = new Vector2(0, -6.4f);
+            maxPosition = new Vector2(9, 15);
+        }
+        else
+        {
+            minPosition = new Vector2(3, -5.7f);
+            maxPosition = new Vector2(7.14f, 16);
+        
+        }
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        Vector3 delta = Vector3.zero;
-
-        float deltaX = player.position.x - transform.position.x;
-
-        if (deltaX > boundX || deltaX < -boundX)
+        if (transform.position != player.position)
         {
-            if (transform.position.x < player.position.x)
-            {
-                delta.x = deltaX - boundX;
-            }
-            else
-            {
-                delta.x = deltaX + boundX;
-            }
+            Vector3 targetPosition = new Vector3(player.position.x, player.position.y, transform.position.z);
+
+            targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition.x, maxPosition.x);
+            targetPosition.y = Mathf.Clamp(targetPosition.y, minPosition.y, maxPosition.y);
+
+            transform.position = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
         }
 
-        float deltaY = player.position.y - transform.position.y;
-
-        if (deltaY > boundY || deltaY < -boundY)
-        {
-            if (transform.position.y < player.position.y)
-            {
-                delta.y = deltaY - boundY;
-            }
-            else
-            {
-                delta.y = deltaY + boundY;
-            }
-        }
-
-        // Add clamping based on Tilemap bounds
-        tilemap = FindObjectOfType<Tilemap>();
-        tilemap.CompressBounds();
-
-        bounds = tilemap.cellBounds;
-
-        Vector3 targetPosition = transform.position + delta;
-     
-        targetPosition.x = Mathf.Clamp(targetPosition.x, bounds.x, bounds.x + bounds.size.x);
-        targetPosition.y = Mathf.Clamp(targetPosition.y, bounds.y, bounds.y + bounds.size.y);
-     
-        transform.position = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
+    
     }
+
+    
 }
