@@ -4,7 +4,6 @@ using Firebase;
 using Firebase.Auth;
 using TMPro;
 using System.Threading.Tasks;
-using UnityEditor.VersionControl;
 using UnityEngine.SceneManagement;
 
 using System;
