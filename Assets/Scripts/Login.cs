@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
+
 
 public class Login : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class Login : MonoBehaviour
 
     public void LogIn()
     {
-        SceneManager.LoadSceneAsync(5);
+        SceneManager.LoadSceneAsync("PlayTypeSelect");
     }
 
     public void MainMenu()

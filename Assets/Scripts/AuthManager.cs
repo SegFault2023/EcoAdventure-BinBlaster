@@ -5,6 +5,8 @@ using Firebase.Auth;
 using TMPro;
 using System.Threading.Tasks;
 using UnityEditor.VersionControl;
+using UnityEngine.SceneManagement;
+
 using System;
 
 public class AuthManager : MonoBehaviour
@@ -109,6 +111,8 @@ public class AuthManager : MonoBehaviour
             confirmLoginText.color = Color.green;
             warningLoginText.text = "";
             confirmLoginText.text = "Logged In!";
+            SceneManager.LoadSceneAsync("PlayTypeSelect");
+
         }
     }
 
@@ -203,6 +207,6 @@ public class AuthManager : MonoBehaviour
 
     private void GoLoginScreen()
     {
-        UIManager.instance.LoginScreen();
+        UIauthManager.instance.LoginScreen();
     }
 }

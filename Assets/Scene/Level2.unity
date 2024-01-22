@@ -9719,7 +9719,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 539905712}
-  - component: {fileID: 539905711}
+  - component: {fileID: 539905713}
   m_Layer: 0
   m_Name: TimeManager
   m_TagString: Untagged
@@ -9727,21 +9727,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &539905711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539905710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 696804c224155844ea4d6b68c1c9f373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeText: {fileID: 1659008738}
-  startTimeInSeconds: 120
-  count: {fileID: 1690833472}
 --- !u!4 &539905712
 Transform:
   m_ObjectHideFlags: 0
@@ -9758,6 +9743,22 @@ Transform:
   - {fileID: 1831998554}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &539905713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539905710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2012003825bceeb49b48ecfa846ca51e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 1659008738}
+  startTimeInSeconds: 120
+  countdown: {fileID: 1690833472}
+  currentLevelNumber: 1
 --- !u!1001 &542582771
 PrefabInstance:
   m_ObjectHideFlags: 0

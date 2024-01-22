@@ -1102,12 +1102,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 266046799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 696804c224155844ea4d6b68c1c9f373, type: 3}
+  m_Script: {fileID: 11500000, guid: 2012003825bceeb49b48ecfa846ca51e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 568698511}
   startTimeInSeconds: 120
-  count: {fileID: 1744801687}
+  countdown: {fileID: 1744801687}
+  currentLevelNumber: 1
 --- !u!224 &270303608 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1177307491768971466, guid: 8000cfea743d98c4a9bc442129066d51, type: 3}
